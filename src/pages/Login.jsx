@@ -33,7 +33,7 @@ const Login = () => {
             login(response.data);
 
             // Navigate to dashboard
-            navigate('/dashboard');
+            navigate('/');
         } catch (error) {
             console.error('Error during login:', error);
             setError(error?.response?.data || 'An unexpected error occurred. Please try again.');

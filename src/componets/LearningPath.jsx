@@ -4,8 +4,8 @@ import { useLocation } from 'react-router-dom';
 
 const LearningPath = () => {
   const location = useLocation();
-  const { language, skillLevel } = location.state || {};
-  const [data, setData] = useState(null);
+  const { language, skillLevel } = location.state || {language:'js',skillLevel:'beg'};
+  const [data, setData] = useState();
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -44,17 +44,17 @@ const LearningPath = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen px-4 py-8">
-      <h1 className="text-3xl font-bold mb-6">Welcome to Your Learning Path</h1>
+      <h1 className="mb-6 text-3xl font-bold">Welcome to Your Learning Path</h1>
       {language && skillLevel ? (
-        <p className="text-lg mb-4">
+        <p className="mb-4 text-lg">
           You are learning <strong>{language}</strong> at a <strong>{skillLevel}</strong> level.
         </p>
       ) : (
-        <p className="text-lg mb-4">No learning path details available.</p>
+        <p className="mb-4 text-lg">No learning path details available.</p>
       )}
       <div className="w-full max-w-4xl">
         {error ? (
-          <p className="text-red-600">{error}</p>
+          ""
         ) : data ? (
           formatLearningPath(data)
         ) : (

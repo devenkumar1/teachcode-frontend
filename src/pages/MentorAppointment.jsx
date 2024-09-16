@@ -100,10 +100,10 @@ const MentorAppointment = () => {
   };
 
   return (
-    <main className="container mx-auto p-6">
-      <h2 className="text-3xl font-bold mb-6">Mentor Appointment</h2>
+    <main className="container p-6 mx-auto">
+      <h2 className="mb-6 text-3xl font-bold">Mentor Appointment</h2>
       <div className="flex flex-col h-[500px] max-h-[500px] border rounded-lg overflow-hidden">
-        <div className="flex-1 p-4 bg-gray-100 dark:bg-gray-800 overflow-y-auto">
+        <div className="flex-1 p-4 overflow-y-auto bg-gray-100 dark:bg-gray-800">
           {messages.map((msg, index) => (
             <div key={index} className={`mb-2 ${msg.isBot ? 'text-gray-600 dark:text-gray-300' : 'text-blue-600'}`}>
               <div className={`p-2 rounded-lg ${msg.isBot ? 'bg-gray-200 dark:bg-gray-700' : 'bg-blue-100'}`}>
@@ -112,13 +112,13 @@ const MentorAppointment = () => {
             </div>
           ))}
         </div>
-        <div className="bg-white dark:bg-gray-800 p-4 flex items-center">
+        <div className="flex items-center p-4 text-black bg-white dark:bg-gray-800">
           <input
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             disabled={isSending}
-            className="flex-1 border rounded-lg p-2 mr-2"
+            className="flex-1 p-2 mr-2 border rounded-lg"
             placeholder="Type your message here..."
           />
           <button
