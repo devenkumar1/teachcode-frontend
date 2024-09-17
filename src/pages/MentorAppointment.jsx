@@ -12,7 +12,7 @@ const MentorAppointment = () => {
       const response = await axios.post(
         'https://api.on-demand.io/chat/v1/sessions',
         {
-          pluginIds: ['plugin-1726452418','plugin-1726230152'],
+          pluginIds: ['plugin-1726452418','plugin-1726569757'],
           externalUserId: 'test'
         },
         {
@@ -36,7 +36,7 @@ const MentorAppointment = () => {
         {
           endpointId: 'predefined-openai-gpt4o',
           query: userQuery,
-          pluginIds:  ['plugin-1726452418','plugin-1726230152'],
+          pluginIds:  ['plugin-1726452418','plugin-1726569757'],
           responseMode: 'sync'
         },
         {
