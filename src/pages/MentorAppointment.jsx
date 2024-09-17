@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import axios from 'axios';
 
 const MentorAppointment = () => {
@@ -12,12 +12,12 @@ const MentorAppointment = () => {
       const response = await axios.post(
         'https://api.on-demand.io/chat/v1/sessions',
         {
-          pluginIds: [],
+          pluginIds: ['plugin-1726452418','plugin-1726230152'],
           externalUserId: 'test'
         },
         {
           headers: {
-            apikey: "yk86jHmoVkcbzvzaC8bJRgO379ydyphv"
+            apikey: "nFbmhINvoiOTLNMa3MBMBhsrrytbPS7w"
           }
         }
       );
@@ -36,12 +36,12 @@ const MentorAppointment = () => {
         {
           endpointId: 'predefined-openai-gpt4o',
           query: userQuery,
-          pluginIds: ['plugin-1726258392'],
+          pluginIds:  ['plugin-1726452418','plugin-1726230152'],
           responseMode: 'sync'
         },
         {
           headers: {
-            apikey: "yk86jHmoVkcbzvzaC8bJRgO379ydyphv"
+            apikey: "nFbmhINvoiOTLNMa3MBMBhsrrytbPS7w"
           }
         }
       );
@@ -93,7 +93,7 @@ const MentorAppointment = () => {
       const response = await main(input);
       setMessages([...messages, { text: input, isBot: false }, { text: response, isBot: true }]);
     } catch (error) {
-      setMessages([...messages, { text: input, isBot: false }, { text: 'Sorry, something went wrong.', isBot: true }]);
+      setMessages([...messages, { text: input, isBot: false }, { text: `Sorry, something went wrong.${error}`, isBot: true }]);
     } finally {
       setIsSending(false);
     }
