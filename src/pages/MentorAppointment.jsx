@@ -5,6 +5,9 @@ const MentorAppointment = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [isSending, setIsSending] = useState(false);
+  const plugin1=import.meta.env.REACT_PLUGIN_ID1;
+  const plugin2=import.meta.env.REACT_PLUGIN_ID2;
+  chatApiKey= import.meta.env.CHAT_API_KEY
 
   // Function to create a chat session
   async function createChatSession() {
@@ -12,16 +15,16 @@ const MentorAppointment = () => {
       const response = await axios.post(
         'https://api.on-demand.io/chat/v1/sessions',
         {
-          pluginIds: ['plugin-1726452418','plugin-1726569757'],
+          pluginIds: [plugin1,plugin2],
           externalUserId: 'test'
         },
         {
           headers: {
-            apikey: "nFbmhINvoiOTLNMa3MBMBhsrrytbPS7w"
+            apikey: chatApiKey
           }
         }
       );
-      return response.data.data.id; // Extract session ID
+      return response.data.data.id; 
     } catch (error) {
       console.error('Error creating chat session:', error);
       throw error;
@@ -36,12 +39,12 @@ const MentorAppointment = () => {
         {
           endpointId: 'predefined-openai-gpt4o',
           query: userQuery,
-          pluginIds:  ['plugin-1726452418','plugin-1726569757'],
+          pluginIds:  [plugin1,plugin2],
           responseMode: 'sync'
         },
         {
           headers: {
-            apikey: "nFbmhINvoiOTLNMa3MBMBhsrrytbPS7w"
+            apikey: chatApiKey
           }
         }
       );

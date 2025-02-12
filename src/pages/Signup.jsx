@@ -9,11 +9,11 @@ const Signup = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-  const server_url = import.meta.env.VITE_SERVER_URL;
+  const server_url = import.meta.env.backend_url;
 
   const handleSignup = async (e) => {
     e.preventDefault();
-    setError(null); // Clear previous errors
+    setError(null); 
 
     try {
       const obj = {
@@ -22,11 +22,8 @@ const Signup = () => {
         password,
       };
 
-      const response = await axios.post(`${server_url}/register`, obj, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+      const response = await axios.post(`${server_url}/api/register`, obj, {withCredentials:true}
+      );
 
       console.log('Signup successful:', response.data);
       // Redirect to login page after successful signup

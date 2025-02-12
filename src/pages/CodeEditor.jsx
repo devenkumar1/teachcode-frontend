@@ -5,20 +5,18 @@ const CodeEditor = () => {
     const [code, setCode] = useState('');
     const [correctedCode, setCorrectedCode] = useState('');
     const [errors, setErrors] = useState('');
-    const [language, setLanguage] = useState('javascript'); // Default to JavaScript
-    const backendUrl = import.meta.env.VITE_SERVER_URL; // Ensure this is defined in your .env file
+    const [language, setLanguage] = useState('javascript'); 
+    const backendUrl = import.meta.env.REACT_APP_BACKEND_URL;
 
     // Function to handle running the code
     const handleRunCode = async () => {
         try {
-            const response = await axios.post(`${backendUrl}/code`, {
+            const response = await axios.post(`${backendUrl}/api/code`, {
                 code,
-                language // Send the selected language to the backend
-            }, {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
+                language 
+            },
+            {withCredentials:true} 
+            );
 
             const serverResponse = response.data.code;
 

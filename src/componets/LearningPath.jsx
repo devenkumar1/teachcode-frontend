@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 
+const backend_url=import.meta.env.REACT_APP_BACKEND_URL;
+
 const LearningPath = () => {
   const location = useLocation();
   const { language, skillLevel } = location.state || {language:'js',skillLevel:'beg'};
@@ -13,7 +15,7 @@ const LearningPath = () => {
     if (language && skillLevel) {
       const sendLearningPathData = async () => {
         try {
-          const response = await axios.post('http://192.168.255.10:4500/learningPath', {
+          const response = await axios.post(`${backend_url}/api/learningPath`, {
             skill: language,
             skillLevel,
           });

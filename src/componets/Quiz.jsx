@@ -10,7 +10,8 @@ const Quiz = () => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
-  const { language, skillLevel } = location.state || {}; // Destructure parameters from location.state
+  const { language, skillLevel } = location.state || {}; 
+  const backend_url= import.meta.REACT_APP_BACKEND_URL;
 
   console.log(language, skillLevel);
 
@@ -18,8 +19,7 @@ const Quiz = () => {
     const fetchQuestions = async () => {
       try {
         // Send language and skillLevel to the backend if needed
-        const response = await axios.post('http://192.168.255.10:4500/quiz', { language, skillLevel });
-
+        const response = await axios.post(`${backend_url}/api/quiz`, { language, skillLevel }, { withCredentials: true });
         if (response.data && response.data.success && Array.isArray(response.data.data)) {
           setQuestions(response.data.data);
           setSelectedOptions(new Array(response.data.data.length).fill(null));
@@ -81,22 +81,22 @@ const Quiz = () => {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900 p-4">
-      <div className="w-full max-w-4xl bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-        <h1 className="text-3xl font-bold mb-6 text-gray-800 dark:text-gray-100">Quiz</h1>
+    <div className="flex items-center justify-center min-h-screen p-4 bg-gray-100 dark:bg-gray-900">
+      <div className="w-full max-w-4xl p-6 bg-white rounded-lg shadow-lg dark:bg-gray-800">
+        <h1 className="mb-6 text-3xl font-bold text-gray-800 dark:text-gray-100">Quiz</h1>
         <form onSubmit={(e) => { e.preventDefault(); handleSubmit(); }}>
           {questions.map((questionObj, index) => (
             <div key={index} className="mb-8">
-              <p className="text-lg font-semibold mb-4 text-gray-700 dark:text-gray-300">
+              <p className="mb-4 text-lg font-semibold text-gray-700 dark:text-gray-300">
                 {index + 1}. {questionObj.question}
               </p>
               <div className="flex flex-col space-y-2">
                 {questionObj.options.map((option, optIndex) => (
-                  <label key={optIndex} className="inline-flex items-center bg-gray-100 dark:bg-gray-700 p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-600 transition">
+                  <label key={optIndex} className="inline-flex items-center p-2 transition bg-gray-100 rounded-md dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600">
                     <input
                       type="radio"
                       name={`question-${index}`}
-                      className="form-radio text-blue-500 mr-2"
+                      className="mr-2 text-blue-500 form-radio"
                       onChange={() => handleOptionChange(index, option)}
                       checked={selectedOptions[index] === option}
                     />
@@ -109,7 +109,7 @@ const Quiz = () => {
           <div className="flex justify-end">
             <button
               type="submit"
-              className="mt-6 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition"
+              className="px-4 py-2 mt-6 text-white transition bg-blue-600 rounded-md hover:bg-blue-700"
               disabled={selectedOptions.includes(null)}
             >
               Submit Test

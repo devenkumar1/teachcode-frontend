@@ -12,13 +12,13 @@ import Signup from './pages/Signup';
 import Quiz from './componets/Quiz';
 import UserChoice from './componets/UserChoice';
 import Result from './componets/Result';
-import { AuthProvider } from './context/AuthContext';
+import { AppProvider } from './context/AuthContext'; 
 
 const App = () => {
   return (
-    <AuthProvider>
+    <AppProvider>
       <Router>
-        <div className="font-sans bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen">
+        <div className="min-h-screen font-sans text-gray-900 bg-white dark:bg-gray-900 dark:text-gray-100">
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
@@ -34,7 +34,7 @@ const App = () => {
           </Routes>
         </div>
       </Router>
-    </AuthProvider>
+    </AppProvider>
   );
 };
 
