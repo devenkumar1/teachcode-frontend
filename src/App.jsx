@@ -13,7 +13,6 @@ import Quiz from './componets/Quiz';
 import UserChoice from './componets/UserChoice';
 import Result from './componets/Result';
 import { AppProvider } from './context/AuthContext'; 
-
 const App = () => {
   return (
     <AppProvider>

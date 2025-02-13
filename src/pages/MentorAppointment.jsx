@@ -1,13 +1,21 @@
 import  { useState } from 'react';
 import axios from 'axios';
-
+import { useAppContext } from '../context/AuthContext';
 const MentorAppointment = () => {
+  
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [isSending, setIsSending] = useState(false);
-  const plugin1=import.meta.env.REACT_PLUGIN_ID1;
-  const plugin2=import.meta.env.REACT_PLUGIN_ID2;
-  chatApiKey= import.meta.env.CHAT_API_KEY
+  const plugin1=import.meta.env.VITE_PLUGIN_ID1
+  const plugin2=import.meta.env.VITE_PLUGIN_ID2
+  const chatApiKey= import.meta.env.VITE_CHAT_API_KEY;
+  const {user} = useAppContext(); 
+
+    if(!user){
+     return(
+      <div className='flex items-center justify-center w-full min-h-screen'>please login first:  <a href="/login"><button className='p-2 bg-blue-500 rounded-md '>Login</button></a> </div>
+     )
+    }
 
   // Function to create a chat session
   async function createChatSession() {
@@ -60,7 +68,8 @@ const MentorAppointment = () => {
     try {
       const sessionId = await createChatSession();
       const queryResponse = await submitQuery(sessionId, userQuery);
-      return formatResponse(queryResponse); // Format and return the query response
+      // Format and return the query response
+      return formatResponse(queryResponse); 
     } catch (error) {
       console.error('Error in main function:', error);
       throw error;
@@ -74,7 +83,7 @@ const MentorAppointment = () => {
       // Split the response into paragraphs based on new lines
       return response.data.answer
         .split('\n')
-        .filter(line => line.trim() !== '') // Remove empty lines
+        .filter(line => line.trim() !== '')
         .map((line, index) => (
           <p key={index} className="mb-2">{line}</p>
         ));

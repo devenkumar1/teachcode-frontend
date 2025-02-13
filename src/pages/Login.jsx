@@ -9,7 +9,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-  const { login } = useAppContext();  // Make sure `login` is coming from context
+  const { login } = useAppContext(); 
 
   const server_url = import.meta.env.VITE_SERVER_URL;
 

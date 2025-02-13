@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
+import { useAppContext } from '../context/AuthContext';
 
 const CodeEditor = () => {
     const [code, setCode] = useState('');
@@ -7,6 +8,12 @@ const CodeEditor = () => {
     const [errors, setErrors] = useState('');
     const [language, setLanguage] = useState('javascript'); 
     const backendUrl = import.meta.env.REACT_APP_BACKEND_URL;
+    const {user} = useAppContext(); 
+      if(!user){
+       return(
+        <div className='flex items-center justify-center w-full min-h-screen'>please login first:  <a href="/login"><button className='p-2 bg-blue-500 rounded-md '>Login</button></a> </div>
+       )
+      }
 
     // Function to handle running the code
     const handleRunCode = async () => {
