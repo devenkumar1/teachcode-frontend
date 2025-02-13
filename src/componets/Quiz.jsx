@@ -11,7 +11,7 @@ const Quiz = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { language, skillLevel } = location.state || {}; 
-  const backend_url= import.meta.REACT_APP_BACKEND_URL;
+  const backend_url= import.meta.VITE_SERVER_URL;
 
   console.log(language, skillLevel);
   const {user} = useAppContext(); 

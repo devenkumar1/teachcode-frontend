@@ -7,7 +7,7 @@ const CodeEditor = () => {
     const [correctedCode, setCorrectedCode] = useState('');
     const [errors, setErrors] = useState('');
     const [language, setLanguage] = useState('javascript'); 
-    const backendUrl = import.meta.env.REACT_APP_BACKEND_URL;
+    const backendUrl = import.meta.env.VITE_SERVER_URL;
     const {user} = useAppContext(); 
       if(!user){
        return(

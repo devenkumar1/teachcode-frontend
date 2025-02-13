@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import { useAppContext } from '../context/AuthContext';
-const backend_url=import.meta.env.REACT_APP_BACKEND_URL;
+const backend_url=import.meta.env.VITE_SERVER_URL;
 
 const LearningPath = () => {
   const location = useLocation();

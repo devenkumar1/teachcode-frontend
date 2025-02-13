@@ -5,7 +5,7 @@ import React, { createContext, useState, useContext } from 'react';
 
 // Create the context
 const AppContext = createContext();
-const backend_url=import.meta.env.REACT_APP_BACKEND_URL;
+const backend_url=import.meta.env.VITE_SERVER_URL;
 
 // Create a custom hook to use the context
 export const useAppContext = () => useContext(AppContext);

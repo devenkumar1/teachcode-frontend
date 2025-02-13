@@ -9,7 +9,7 @@ const Signup = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-  const server_url = import.meta.env.backend_url;
+  const server_url = import.meta.env.VITE_SERVER_URL;
 
   const handleSignup = async (e) => {
     e.preventDefault();
