@@ -35,7 +35,7 @@ const Navbar = () => {
           <a href="/">My App</a>
         </span>
         {user ? (
-          <button onClick={logout} className="px-4 py-2 bg-red-500 rounded">
+          <button onClick={()=>logout} className="px-4 py-2 bg-red-500 rounded">
             Logout
           </button>
         ) : (
