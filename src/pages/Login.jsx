@@ -21,8 +21,8 @@ const Login = () => {
       const response = await axios.post(`${server_url}/api/login`, obj, { withCredentials: true });
 
       if (response.status === 200) {
-        console.log('Login successful:', response.data);
-        login(response.data); 
+        console.log('Login successful:', response.data.user);
+        login(response.data.user); 
         navigate('/'); 
       }
     } catch (error) {
